@@ -42,7 +42,7 @@ export default function Home({ deploys }: { deploys: Deploys }) {
         <div>
           {Object.keys(deploys).map((key) => (
             <>
-              <Column>
+              <Column key={key}>
                 <h1 key={key}>{key}</h1>
                 {deploys[key].map((deploy) => (
                   <Deployment key={deploy.commit_sha} {...deploy} />
@@ -58,7 +58,6 @@ export default function Home({ deploys }: { deploys: Deploys }) {
 
 export async function getServerSideProps() {
   const deploys = await getDeploys();
-
   return {
     props: { deploys },
   };
