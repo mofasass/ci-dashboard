@@ -9,8 +9,18 @@ const instance = open({
 // Singleton of migrated DB
 export const db = (async () => {
   const resolved = await instance;
-  console.log("running migrations...");
-  await resolved.migrate();
-  console.log("migrations applied");
+  console.log("Setting up table");
+  await resolved.run(`
+    CREATE TABLE IF NOT EXISTS deploy (
+      branch        TEXT      NOT NULL,
+      time          DATETIME  DEFAULT CURRENT_TIMESTAMP,
+      user          TEXT      NOT NULL,
+      commit_sha    TEXT      NOT NULL,
+      environment   TEXT      NOT NULL,
+      app           TEXT      NOT NULL
+    );
+  `);
+
+  console.log("Table is up");
   return resolved;
 })();
