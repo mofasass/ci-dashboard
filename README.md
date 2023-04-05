@@ -1,3 +1,3 @@
-# Deploy to Google Cloud Run
+Deployed using Google app Engine. Make your changes, and deploy:
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+`gcloud app deploy`
