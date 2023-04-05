@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 
 const instance = open({
-  filename: "database.db",
+  filename: ":memory:",
   driver: sqlite3.Database,
 });
 
